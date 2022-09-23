@@ -10,7 +10,7 @@ export class CommerceController {
   constructor(private commerceService: CommerceService) {
   }
 
-  @UseGuards(AuthGuard('local'))
+  @UseGuards(AuthGuard('basic'))
   @Get()
   async getAll(@Query() params: FilterCommerce): Promise<CommercesPresenter> {
     const { page, limit } = params
@@ -24,6 +24,7 @@ export class CommerceController {
       total,
     }
   }
+  @UseGuards(AuthGuard('basic'))
   @Post()
   async create(@Body() payload: CreateCommerceDto): Promise<CommercePresenter> {
     const commerce = await this.commerceService.create(payload)
