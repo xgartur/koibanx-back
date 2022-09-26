@@ -4,9 +4,6 @@ import { Model } from 'mongoose';
 import { CreateCommerceDto, FilterCommerce } from './commerce.dto';
 import { Commerce } from './commerce.entity';
 
-interface Commerces {
-  paginatedResults: Commerce[]
-}
 @Injectable()
 export class CommerceService {
   constructor(@InjectModel(Commerce.name) private commerceModel: Model<Commerce>) { }
@@ -39,7 +36,7 @@ export class CommerceService {
       })
     }
     if (params.active != undefined) {
-      filter.$and.push({ active: params.active })
+      filter.$and.push({ active: params.active == "false" ? false : true })
     }
     if (!params.active && !params.like) {
       delete filter.$and

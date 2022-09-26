@@ -17,7 +17,9 @@ export class CommerceController {
     const { page, limit } = params
     const data = await this.commerceService.findAll(params)
     const result = data[0]
+    console.log(result)
     const total = result.totalCount[0].count
+    console.log(total)
     return {
       data: commercesPresenter(result.paginatedResults),
       page,
