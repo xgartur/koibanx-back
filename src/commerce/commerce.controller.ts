@@ -17,7 +17,7 @@ export class CommerceController {
     const { page, limit } = params
     const data = await this.commerceService.findAll(params)
     const result = data[0]
-    if (result.paginatedResults.lenght == 0) {
+    if (result.paginatedResults.length == 0) {
       return {
         data: [],
         page: page,
