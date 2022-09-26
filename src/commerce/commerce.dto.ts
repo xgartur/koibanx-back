@@ -1,4 +1,4 @@
-import { IsArray, Min, ArrayNotEmpty, IsBoolean, IsDateString, IsNumber, IsString, IsPositive, IsOptional } from "class-validator";
+import { IsArray, Min, ArrayNotEmpty, IsBoolean, IsDateString, IsNumber, IsString, IsPositive, IsOptional, IsBooleanString } from "class-validator";
 
 export class CreateCommerceDto {
   @IsString()
@@ -30,4 +30,12 @@ export class FilterCommerce {
   @IsOptional()
   @IsPositive()
   limit: number = 10
+
+  @IsOptional()
+  @IsString()
+  like: string
+
+  @IsOptional()
+  @IsString()
+  active: string
 }

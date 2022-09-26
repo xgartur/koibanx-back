@@ -13,11 +13,13 @@ export class CommerceController {
   @UseGuards(AuthGuard('basic'))
   @Get()
   async getAll(@Query() params: FilterCommerce): Promise<CommercesPresenter> {
+    console.log(params)
     const { page, limit } = params
     const data = await this.commerceService.findAll(params)
-    const total = await this.commerceService.count()
+    const result = data[0]
+    const total = result.totalCount[0].count
     return {
-      data: commercesPresenter(data),
+      data: commercesPresenter(result.paginatedResults),
       page,
       pages: Math.floor(total / limit),
       limit,
